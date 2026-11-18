@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 400" font-family="Helvetica, Arial, sans-serif">
+<rect width="1100" height="400" fill="#eef2f6"/>
+<g fill="#172033" font-size="15">
+<text x="40" y="44" font-weight="700" font-size="17">A. Result card for the 4-question check</text>
+<g transform="translate(40,62)"><rect width="480" height="300" rx="16" fill="#172033"/><text x="30" y="60" fill="#ffd23f" font-weight="700" font-size="15">MY AI PRIVACY CHECK</text><text x="30" y="118" fill="#fff" font-weight="700" font-size="34">3 of 4 answers</text><text x="30" y="158" fill="#fff" font-weight="700" font-size="34">surprised me.</text><text x="30" y="200" fill="#c9d1dc">Where do your AI chats go? Take the check.</text><rect x="30" y="232" width="150" height="40" rx="20" fill="#ffd23f"/><text x="60" y="257" font-weight="700">Share result</text></g>
+<text x="580" y="44" font-weight="700" font-size="17">B. Share option on the weekly report</text>
+<g transform="translate(580,62)"><rect width="480" height="300" rx="16" fill="#fff" stroke="#172033" stroke-width="2"/><text x="30" y="56" font-size="14" fill="#5a6478">Your week with Neo</text><text x="30" y="118" font-weight="700" font-size="44" fill="#2747d8">1,240</text><text x="30" y="150" font-weight="700" font-size="18">trackers blocked this week</text><rect x="30" y="180" width="420" height="10" rx="5" fill="#eef2f6"/><rect x="30" y="180" width="300" height="10" rx="5" fill="#ffd23f"/><rect x="30" y="226" width="120" height="40" rx="20" fill="#172033"/><text x="66" y="251" fill="#fff" font-weight="700">Share</text><text x="170" y="251" fill="#5a6478">Turn this report off</text></g>
+</g></svg>

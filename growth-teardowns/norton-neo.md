@@ -1,7 +1,7 @@
 # Growth teardown: Norton Neo browser
 
 - **What this is:** an outside view of how I would model and test growth for Neo, the browser from Norton.
-- **What I looked at:** the public landing page at neobrowser.ai, on 17 November 2026.
+- **What I looked at:** the public landing page at neobrowser.ai, on 17 and 18 November 2026.
 - **What I did not have:** any internal data. Every rate below is something to measure, not something I know.
 
 ## 1. Growth as one equation
@@ -28,6 +28,10 @@ Because the steps multiply, the weakest step limits the whole chain. The first j
 
 ## 2. What the landing page does today
 
+![The top of the Neo landing page: a headline about protection, the Norton badge, and one yellow Download button.](../images/neo/landing-hero.jpg)
+
+*The first screen of neobrowser.ai on 18 November 2026. One promise, one button.*
+
 Facts from the page:
 
 - **One promise:** security. The headline says the web is not built to protect you, and Neo is.
@@ -36,6 +40,14 @@ Facts from the page:
 - **Proof:** a third-party anti-phishing test and a table that compares data handling across AI assistants.
 - **One interactive piece:** a 4-question check about where AI conversations go.
 - **A careful footnote:** the anti-phishing test covered a different Norton browser that shares the same detection technology.
+
+![The proof section: a bar chart of phishing sites blocked, with a small footnote under the chart.](../images/neo/landing-proof.jpg)
+
+*The proof block. The footnote under the chart says the test covered a different Norton browser.*
+
+![A table that compares how Neo and six AI assistants handle data, with a link to a 4-question check under it.](../images/neo/landing-ai.jpg)
+
+*The AI comparison table. The link to the 4-question check sits under it, near the bottom of the page.*
 
 My reading: the page serves a visitor who already wants "a safer browser". A visitor who clicked an ad about streaming abroad, or about private AI, has to scroll to find their reason.
 
@@ -49,6 +61,10 @@ My reading: the page serves a visitor who already wants "a safer browser". A vis
 - **Counter metric:** day-7 retention per variant. A VPN-first page may bring people who want a free VPN and never browse.
 - **Decision rule:** keep a variant only if it wins on installs and does not lose on day-7 retention.
 
+![Three sketches of a landing page. Each one opens with a different promise: no ads, a built-in VPN, private AI.](../images/neo/exp1-variants.svg)
+
+*My sketch, not a Neo design. Same product, three openings, one per reason for the click.*
+
 ### Experiment 2: ask for "default" after the first visible value
 
 - **Hypothesis:** people agree to set a default browser after they have seen it do something for them, not before.
@@ -57,6 +73,10 @@ My reading: the page serves a visitor who already wants "a safer browser". A vis
 - **Counter metric:** prompt dismissals and day-1 uninstalls.
 - **Why this step:** it is the step that turns an install into a habit.
 
+![Two sketches. Left: a default-browser prompt on first launch. Right: a count of blocked ads first, then the prompt.](../images/neo/exp2-default.svg)
+
+*My sketch, not a Neo design. The ask comes after the user has seen the browser do something.*
+
 ### Experiment 3: turn two existing assets into a loop
 
 - **Hypothesis:** people share a result about themselves more than they share a product.
@@ -64,6 +84,10 @@ My reading: the page serves a visitor who already wants "a safer browser". A vis
 - **Change B:** the weekly protection report gets a share option ("blocked 1,240 trackers this week").
 - **Primary metric:** shares per active user, and installs per share.
 - **Counter metric:** share of users who turn the report off.
+
+![Two sketches: a result card for the privacy check, and a weekly report with a share button.](../images/neo/exp3-share.svg)
+
+*My sketch, not a Neo design. Both numbers are made up to show the layout.*
 
 ## 4. Which parts an agent can run
 

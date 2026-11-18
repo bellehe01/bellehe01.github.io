@@ -9,6 +9,8 @@ A five-layer pipeline lost almost every effect for six months. I found the layer
 
 ## The problem
 
+![Four-panel comic. / 1. A user looks at a nearly empty shelf of effects, in front of a full warehouse: "The same three effects. Again." / 2. Five people each watch one section of a pipe. Belle looks at the whole pipe: "Five layers. Which one loses them?" / 3. Belle opens one section and finds an old sign blocking a pile of boxes: "One old rule. It blocks the popular ones." / 4. The shelf is full: "400 times more, every day."](../images/comics/effects.png)
+
 TikTok effects have two entrances: the shooting page and the editing page. The team had a top-priority project to bring the existing shooting effects over to the editing page. For more than six months, almost nothing came through.
 
 - **Users wanted far more than they got.** Editing effects had nearly 10 times more share of posts than share of supply.
