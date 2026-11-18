@@ -100,7 +100,7 @@ if (at === -1) {
     });
     prose.querySelectorAll('h2').forEach((h) => {
       if (h.textContent === 'How it works' && h.nextElementSibling?.tagName === 'OL') h.nextElementSibling.className = 'steps3';
-      if (h.textContent !== 'What I learned') return;
+      if (h.textContent !== 'What I learned' && h.textContent !== 'Retrospective') return;
       // Each lesson (a heading and its paragraphs) becomes one block.
       let node = h.nextElementSibling;
       while (node && node.tagName !== 'H2') {
