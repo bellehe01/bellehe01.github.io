@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belle He | Work</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23ffd23f' stroke='%23172033' stroke-width='5'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='700' font-size='34' text-anchor='middle' fill='%23172033'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="./">Belle He</a>
+    <nav aria-label="Main">
+      <a href="./#work">Work</a>
+      <a class="hide" href="./#experience">Experience</a>
+      <a class="btn tape" href="mailto:bellehe01@gmail.com">Email me</a>
+    </nav>
+  </div>
+</header>
+
+<main class="project">
+  <div class="wrap">
+    <a class="back" href="./#work">Back to all work</a>
+    <article class="prose" id="prose" aria-live="polite"><p>Loading the page.</p></article>
+    <div class="next" id="next"></div>
+  </div>
+</main>
+
+<script type="module">
+import { marked } from 'https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.esm.js';
+import DOMPurify from 'https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.es.mjs';
+
+// Each page is a Markdown file in this repository, so it also reads well on GitHub.
+const PAGES = [
+  { id: 'creator-outreach-automation', file: 'case-studies/creator-outreach-automation.md', title: 'A creator outreach engine, built in-house' },
+  { id: 'acquisition-funnel', file: 'case-studies/acquisition-funnel.md', title: 'An acquisition funnel you can measure' },
+  { id: 'music-creator-growth-plan', file: 'case-studies/music-creator-growth-plan.md', title: 'A creator growth plan: better hours, not more hours' },
+  { id: 'norton-neo', file: 'growth-teardowns/norton-neo.md', title: 'Growth teardown: Norton Neo browser' },
+];
+const prose = document.getElementById('prose');
+const id = new URLSearchParams(location.search).get('p');
+const at = PAGES.findIndex((p) => p.id === id);
+
+if (at === -1) {
+  prose.innerHTML = '<h1>That page does not exist.</h1><p><a href="./#work">See all work</a></p>';
+} else {
+  const page = PAGES[at];
+  document.title = `${page.title} | Belle He`;
+  try {
+    const res = await fetch(page.file);
+    if (!res.ok) throw new Error(String(res.status));
+    const html = marked.parse(await res.text());
+    prose.innerHTML = DOMPurify.sanitize(html);
+    // Links between Markdown files point at this viewer instead.
+    prose.querySelectorAll('a[href$=".md"]').forEach((a) => {
+      const target = PAGES.find((p) => a.getAttribute('href').endsWith(p.file.split('/').pop()));
+      if (target) a.href = `project.html?p=${target.id}`;
+    });
+    // Other relative links (a PDF, say) are written relative to the Markdown file.
+    prose.querySelectorAll('a[href]').forEach((a) => {
+      const href = a.getAttribute('href');
+      if (/^(\.\.?\/)/.test(href)) a.href = new URL(href, new URL(page.file, location.href)).href;
+    });
+    // The same goes for a video, its poster and its captions.
+    prose.querySelectorAll('video, source, track').forEach((el) => {
+      ['src', 'poster'].forEach((name) => {
+        const value = el.getAttribute(name);
+        if (value) el.setAttribute(name, new URL(value, new URL(page.file, location.href)).href);
+      });
+    });
+    prose.querySelectorAll('video').forEach((v) => v.load());
+    // The line and list under the title become the page header.
+    const h1 = prose.querySelector('h1');
+    const tagline = h1?.nextElementSibling;
+    if (tagline?.tagName === 'P') {
+      tagline.className = 'tagline';
+      if (tagline.nextElementSibling?.tagName === 'UL') tagline.nextElementSibling.className = 'meta';
+    }
+    // Images are written relative to the Markdown file. A comic that is not drawn yet shows its script.
+    prose.querySelectorAll('img').forEach((img) => {
+      const frame = document.createElement('figure');
+      frame.className = 'comic';
+      img.replaceWith(frame);
+      frame.append(img);
+      img.onerror = () => {
+        const [, ...panels] = img.alt.split(' / ');
+        const grid = document.createElement('div');
+        grid.className = 'panels';
+        panels.forEach((text) => {
+          const cell = document.createElement('div');
+          cell.textContent = text;
+          grid.append(cell);
+        });
+        const note = document.createElement('figcaption');
+        note.textContent = 'Comic script. The drawing replaces this.';
+        frame.replaceChildren(grid, note);
+      };
+      img.src = new URL(img.getAttribute('src'), new URL(page.file, location.href)).href;
+    });
+    prose.querySelectorAll('h2').forEach((h) => {
+      if (h.textContent === 'How it works' && h.nextElementSibling?.tagName === 'OL') h.nextElementSibling.className = 'steps3';
+      if (h.textContent !== 'What I learned') return;
+      // Each lesson (a heading and its paragraphs) becomes one block.
+      let node = h.nextElementSibling;
+      while (node && node.tagName !== 'H2') {
+        const next = node.nextElementSibling;
+        if (node.tagName === 'H3') {
+          const box = document.createElement('div');
+          box.className = 'lesson';
+          node.replaceWith(box);
+          box.append(node);
+        } else if (node.previousElementSibling?.className === 'lesson') {
+          node.previousElementSibling.append(node);
+        }
+        node = next;
+      }
+    });
+    const next = PAGES[(at + 1) % PAGES.length];
+    document.getElementById('next').innerHTML = `<span>Next</span><a href="project.html?p=${next.id}">${next.title}</a>`;
+  } catch (err) {
+    prose.innerHTML = `<h1>This page did not load.</h1><p>Reload to try again, or read it on GitHub: <a href="https://github.com/bellehe01">github.com/bellehe01</a>.</p>`;
+  }
+}
+</script>
+</body>
+</html>

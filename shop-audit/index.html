@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop check | Belle He</title>
+<meta name="description" content="A demo of an AI shop check for TikTok Shop sellers: connect a made-up shop, watch the check run, read the report.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23ffd23f' stroke='%23172033' stroke-width='5'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='700' font-size='34' text-anchor='middle' fill='%23172033'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="phone.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="../">Belle He</a>
+    <nav aria-label="Main">
+      <a href="../#work">Work</a>
+      <a class="hide" href="https://github.com/bellehe01">GitHub</a>
+      <a class="btn tape" href="mailto:bellehe01@gmail.com">Email me</a>
+    </nav>
+  </div>
+</header>
+
+<main class="demo">
+  <div class="wrap demo-grid">
+    <div class="intro head">
+      <a class="back" href="../#work">Back to all work</a>
+      <h1>Shop check</h1>
+      <p class="lede">A seller connects their TikTok Shop. About thirty seconds later they get one page: five numbers, the top problem, and what each AI helper found.</p>
+      <p class="lede small">A rebuild, with made-up shops, of a product I built at work.</p>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="picker">
+        <p class="try">Try it. Pick a shop, then tap Connect.</p>
+        <div class="shops" id="shop-buttons" role="group" aria-label="Choose a shop"></div>
+        <p class="sells" id="sells"></p>
+      </div>
+      <div class="phone" aria-label="Shop check demo">
+        <div class="notch" aria-hidden="true"></div>
+        <div class="screen" id="screen" aria-live="polite"></div>
+      </div>
+      <button class="btn plain restart" type="button" id="restart">Start again</button>
+    </div>
+
+    <div class="intro rest">
+      <img class="strip" src="../images/comics/shop-check.png" width="1400" height="1400" loading="lazy" alt="Four-panel comic. 1: at midnight a shop owner asks: orders, stock, samples, ads, where do I even start? 2: she taps Connect my shop. 3: a small yellow helper ticks off orders, stock and samples in 30 seconds. 4: the helper says 14 creators got samples and have not posted, shall I draft a reminder? She answers: yes, but show me first.">
+
+      <h2>What to look for</h2>
+      <ul class="notice">
+        <li><b>Missing is not zero.</b> Pick Mossback Tea. The ad account is not connected, so the report says "Not counted yet". It does not say 0.</li>
+        <li><b>The page fills in by itself.</b> On Mossback Tea, customer chats are still being read when the report opens. Watch that row change.</li>
+        <li><b>A real zero is calm.</b> Pick Pocket Trail. Zeros read "Nothing to fix here" in grey.</li>
+        <li><b>The summary cannot make up a number.</b> The writer of the top line puts in blanks, and code fills each blank from the shop's data. A line with a typed number is thrown away.</li>
+        <li><b>Nothing is sent without a yes.</b> Tap any "Have …" button. The helper drafts, and you confirm first.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
