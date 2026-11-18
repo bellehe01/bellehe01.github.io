@@ -14,6 +14,7 @@ I build AI agents that run the workflow, so people can run the business. From th
 |---|---|
 | [Shop check](shop-audit/) | A demo you can run in a phone frame. A seller connects a made-up shop and gets one page: five numbers, the top problem, and what each AI helper found. |
 | [A creator outreach engine, built in-house](case-studies/creator-outreach-automation.md) | Zero to 30,000+ invitations a day in two weeks, under 1% failing, and one change I reversed after reading the data. |
+| [A content supply funnel, unblocked: 400x](case-studies/effect-supply-funnel.md) | At TikTok, a five-layer pipeline lost almost every effect. I found the layer, proved the cause and fixed it. |
 | [An acquisition funnel you can measure](case-studies/acquisition-funnel.md) | One row per brand, every step counted, every new lead claimed with one tap. |
 | [A creator growth plan: better hours, not more hours](case-studies/music-creator-growth-plan.md) | A take-home case for TikTok LIVE: five creators, $80,000 and eight weeks to a festival. |
 | [Growth teardown: Norton Neo browser](growth-teardowns/norton-neo.md) | Growth as one equation, and three experiments with a counter metric each. |
