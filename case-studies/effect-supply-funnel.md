@@ -31,22 +31,32 @@ I split the pipeline into its five layers and measured the pass rate of each one
 
 End to end, only a tiny fraction of effects reached users.
 
-### 2. Find the largest leak
+### 2. Round one: the filter
 
-One layer lost most of the volume: the automatic filter. That told me where to look. It did not yet tell me why.
+The automatic filter lost most of the volume. I pulled the rejection reasons with SQL and ranked them. One rule did most of the damage: it blocked every effect that "needs a shooting trigger".
 
-### 3. Prove the cause
+Many of those effects did not need one. Popular beauty and makeup effects were the clearest case: high demand, safe on the editing page, and rejected as a whole category. The filter was not strict. It was out of date.
 
-I pulled the rejection reasons with SQL and ranked them. The largest rule blocked effects that "need a shooting trigger". Many of the effects it blocked did not need one. Popular beauty and makeup effects were the clearest case: high demand, safe on the editing page, and rejected as a whole category.
+I rewrote the selection rule to keep those categories, and the filter team removed the old rule.
 
-So the filter was not strict. It was out of date.
+### 3. Measure again: the bottleneck moved
 
-### 4. Change one layer at a time
+With the filter fixed, I measured the layers again. Three new limits showed up:
 
-- **Selection and filter rules.** Keep the popular categories that were wrongly blocked. Open each other category only after a person reviewed a sample of it.
-- **QA thresholds.** Adjust the memory and frame-rate limits that failed effects which ran well.
-- **Human review.** Grow the review capacity and train the reviewers, so the last layer can take the new volume.
-- **Intake.** I worked backward from the daily target: target, divided by each layer's pass rate, gives the intake the first layer needs. Then I raised intake in three stages, not in one jump.
+- **Intake was too small.** The warehouse sent a fraction of what the shooting page could supply each day.
+- **QA passed a minority of effects.** The memory and frame-rate limits were set for a different page.
+- **Human review was one person.**
+
+This is the part I would repeat on any funnel: fix one leak, then measure before you trust the fix.
+
+### 4. Round two: one change per layer
+
+- **Intake.** I worked backward from the daily target: target, divided by each layer's pass rate, gives the intake the first layer needs. Intake then went up in stages, not in one jump, so each team could take the load.
+- **Filter.** I ranked the remaining rejection reasons by volume. Each category was opened only after a person reviewed a sample of it.
+- **QA.** The new memory limit came from a budget, not a guess: the app's safe memory, minus what the editing page already uses, split across the effects a user can stack. A looser limit passes more effects but can make the page lag, so the QA lead, the engineer and I agreed the risk before the change.
+- **Human review.** A written procedure and a larger review team, so the last layer could take the new volume.
+
+Each change had an owner, a cost in days and a date.
 
 ### 5. Watch the numbers
 
@@ -54,7 +64,7 @@ A dashboard tracked the conversion of each layer and the accuracy of human revie
 
 ### 6. Decide what comes next
 
-Two findings came out of the first rounds, and I raised both:
+Two findings came out of the work, and I raised both:
 
 - One global "top effects" list was unfair to smaller markets. A large market filled the list and a small one got a handful. I proposed a split by country.
 - The rule spotted a "shooting trigger" by reading the on-screen hint text, which is not precise. I proposed reading the effect's own parameters and tags.
@@ -63,7 +73,7 @@ Two findings came out of the first rounds, and I raised both:
 
 <div class="bignums">
 <div><b>400x</b><span>more usable effects reached the editing page each day.</span></div>
-<div><b>12x</b><span>more effects sent into the pipeline each day, raised in three stages.</span></div>
+<div><b>12x</b><span>more effects sent into the pipeline each day, raised in stages.</span></div>
 <div><b>5</b><span>parties on one plan, from the data warehouse to human review.</span></div>
 </div>
 
