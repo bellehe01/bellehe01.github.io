@@ -56,7 +56,7 @@ Two questions had no answer:
 
 I set the requirements, checked production data before each change and wrote most of the changes with AI coding agents. Another developer built the first version of the prospects screen. Each of my changes went through engineering review before it merged.
 
-Five decisions did most of the work.
+Six decisions did most of the work.
 
 ### 1. One row per brand, from the first form
 
@@ -79,9 +79,18 @@ A teammate had built an owner rotation and a follow-up alert. I read production 
 - **The rotation had never assigned anyone.** Its settings named two people by ids that did not exist in the chat app. I changed the lookup to email, and extended it from one form to every form.
 - **The alert had failed 242 times in 17 hours.** It sent its message inside an open database lock, which the message sender refuses. I moved the send outside the lock.
 
-### 5. Clean counts
+### 5. Count only real brands and real clicks
 
-Test leads are flagged when they are created. They get no owner, no deadline and no messages, and they are left out of every count. Without this, every test of the funnel would have changed the numbers.
+Two things inflated the numbers, and I removed both:
+
+- **Test leads.** They are flagged when they are created. They get no owner, no deadline and no messages, and they are left out of every count.
+- **Clicks that no person made.** Email security tools open every link the moment a message arrives. The report had counted those as brands clicking. Now a click counts only when it comes from a browser, at least a minute after the email went out.
+
+### 6. One record of "first contact"
+
+Sales recorded a contact in 12 different places, and each report read a different one. In one two-week sample, 15 of 16 new leads showed no contact anywhere. The ad platforms had never received a single "this lead was good" signal, so they had nothing to learn from.
+
+I made one writer for first contact. A call, a text, an email or a status change all write the same record, with who and how.
 
 ## How it works
 
