@@ -72,7 +72,7 @@ Test leads are flagged when they are created. They get no deadline and no messag
 ## How it works
 
 1. **The lead arrives.** One form creates one row and one card.
-2. **Someone owns it.** A person taps "I'll take it". If nobody does, round-robin picks an owner and reminds them every 30 minutes.
+2. **Someone owns it.** A person taps "I'll take it". Until then the lead has an automatic owner, and the team gets an alert if nobody makes contact within 10 business minutes.
 3. **The stage moves by itself.** Shop connected, call booked, paid: the system records each one, and the report counts it.
 
 ## Results
@@ -83,7 +83,7 @@ Test leads are flagged when they are created. They get no deadline and no messag
 <div><b>10 min</b><span>target for first human contact, in business hours.</span></div>
 </div>
 
-Another developer built the first version of the prospects screen. I built the stage model, the board, the funnel and calls views, the lead card, round-robin assignment and test-lead isolation. Each change went through engineering review before it merged.
+Another developer built the first version of the prospects screen. I built the stage model, the board, the funnel and calls views, the lead card and test-lead isolation. A teammate set the 10-minute target and built the first follow-up alert and owner rotation. I repaired both when they stopped working in production. Each change went through engineering review before it merged.
 
 ## What I learned
 
