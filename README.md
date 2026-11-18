@@ -1,6 +1,6 @@
 # Belle He: portfolio
 
-I build AI agents and automation workflows that enhance user experience and operational efficiency, from the first stakeholder request to the live product.
+I build AI agents that run the workflow, so people can run the business. From the first stakeholder request to the live product.
 
 - 2,000+ pull requests merged to production with Claude Code, for an agency serving 300+ TikTok Shop brands
 - A creator outreach engine built in-house on the TikTok Shop API: zero to 30,000+ invitations a day in two weeks
